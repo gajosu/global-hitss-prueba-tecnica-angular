@@ -80,6 +80,7 @@ $background-color: #f5f5f5;
   &__table {
     width: 100%;
     border-collapse: collapse;
+    border: 1px solid #e0e0e0;
 
     th {
       color: $text-color;
@@ -87,6 +88,7 @@ $background-color: #f5f5f5;
       text-align: left;
       padding: 16px;
       border-bottom: 2px solid $border-color;
+      background-color: white;
     }
 
     td {
@@ -95,8 +97,12 @@ $background-color: #f5f5f5;
       color: $text-color;
     }
 
-    tr:nth-child(even) {
-      background-color: $background-color;
+    tr {
+      background-color: white;
+
+      &:hover {
+        background-color: #f0f5ff !important;
+      }
     }
 
     tr:last-child td {
@@ -105,21 +111,28 @@ $background-color: #f5f5f5;
   }
 
   &__action-button {
-    padding: 0 16px;
+    padding: 8px 16px !important;
     margin-right: 8px;
     font-size: 14px;
     display: inline-flex;
     align-items: center;
+    min-width: 100px !important;
+    justify-content: center !important;
+    border-radius: 6px !important;
 
     &--edit {
-      color: #4CAF50;
+      color: #4CAF50 !important;
+
+      &:hover {
+        background-color: #c4f5d8 !important;
+      }
     }
 
     &--delete {
       color: #F44336 !important;
 
       &:hover {
-        background-color: rgba(244, 67, 54, 0.1) !important;
+        background-color: #f5dddf !important;
       }
     }
   }
@@ -171,7 +184,7 @@ $background-color: #f5f5f5;
   }
 
   .mat-mdc-text-field-wrapper {
-    background-color: #e0e7eb !important;
+    background-color: #fff !important;
     border-radius: 4px !important;
   }
 

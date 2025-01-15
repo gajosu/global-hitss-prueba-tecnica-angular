@@ -1,6 +1,6 @@
 <div class="create-user-dialog">
   <div class="create-user-dialog__header">
-    <h2 mat-dialog-title>Registrar usuario</h2>
+    <h2 mat-dialog-title>{{dialogTitle}}</h2>
     <button mat-icon-button class="create-user-dialog__close" (click)="onCancel()">
       <mat-icon>close</mat-icon>
     </button>
@@ -72,8 +72,11 @@
     <button mat-button class="create-user-dialog__cancel-button" (click)="onCancel()">
       Cancelar
     </button>
-    <button mat-raised-button class="create-user-dialog__submit-button" (click)="onSubmit()" [disabled]="!userForm.valid">
-      Registrar
+    <button mat-raised-button
+            class="create-user-dialog__submit-button"
+            (click)="onSubmit()"
+            [disabled]="!userForm.valid || isLoading">
+      {{isEdit ? 'Actualizar' : 'Registrar'}}
     </button>
   </mat-dialog-actions>
 </div>

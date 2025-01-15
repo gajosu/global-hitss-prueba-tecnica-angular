@@ -138,4 +138,24 @@ export class UsersComponent implements OnInit {
       }
     });
   }
+
+  editUser(user: User): void {
+    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
+      width: '800px',
+      maxWidth: '90vw',
+      disableClose: true,
+      data: {
+        user: user,
+        departamentos: this.departamentos,
+        cargos: this.cargos,
+        isEdit: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadInitialData();
+      }
+    });
+  }
 }
