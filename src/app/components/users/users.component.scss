@@ -42,11 +42,28 @@ $background-color: #f5f5f5;
   }
 
   &__create-button {
-    margin-left: auto;
-    background-color: $primary-color;
-    color: white;
-    padding: 0 24px;
-    height: 48px;
+    margin-left: auto !important;
+    background-color: #e0e2e6 !important;
+    color: #333 !important;
+    padding: 25px 30px !important;
+    height: 36px !important;
+    border-radius: 4px !important;
+    font-weight: normal !important;
+    font-size: 17px !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease !important;
+
+    &:hover {
+      background-color: #eeeeee !important;
+      border-color: #bebebe !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    &:active {
+      background-color: #e0e0e0 !important;
+      transform: translateY(1px);
+    }
   }
 
   &__content {
@@ -57,7 +74,7 @@ $background-color: #f5f5f5;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    padding: 24px;
+    padding: 30px;
   }
 
   &__table {
@@ -119,6 +136,28 @@ $background-color: #f5f5f5;
   &__total {
     color: #666;
     font-size: 14px;
+  }
+
+  &__no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+    color: #666;
+    text-align: center;
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 16px;
+    }
   }
 }
 

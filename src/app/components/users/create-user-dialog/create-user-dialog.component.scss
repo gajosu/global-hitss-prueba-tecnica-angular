@@ -1,0 +1,103 @@
+.create-user-dialog {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 12px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  &__row {
+    display: flex;
+    gap: 16px;
+
+    mat-form-field {
+      flex: 1;
+    }
+  }
+
+  &__cancel-button {
+    background-color: #f5f5f5 !important;
+    color: #666 !important;
+    padding: 0 24px !important;
+    height: 36px !important;
+    border-radius: 4px !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    border: 1px solid #e0e0e0 !important;
+
+    &:hover {
+      background-color: #eeeeee !important;
+    }
+  }
+
+  &__submit-button {
+    background-color: #0072bc !important;
+    color: white !important;
+    padding: 0 24px !important;
+    height: 36px !important;
+    border-radius: 4px !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+
+    &:hover:not([disabled]) {
+      background-color: #005a96 !important;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 0 !important;
+  }
+
+  .mat-mdc-dialog-surface {
+    border-radius: 8px !important;
+    min-width: 800px !important;
+    background-color: #f8f9fa !important;
+  }
+
+  .mat-mdc-dialog-title {
+    margin: 0 !important;
+    color: #333;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+  }
+
+  .mat-mdc-dialog-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-height: none !important;
+  }
+
+  .mat-mdc-dialog-actions {
+    padding: 16px 24px !important;
+    margin: 0 !important;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+
+  .mat-mdc-form-field-appearance-outline {
+    .mat-mdc-form-field-wrapper {
+      margin: 0;
+      padding: 0;
+    }
+
+    .mat-mdc-form-field-flex {
+      margin-top: 0;
+      padding: 0;
+      background-color: white;
+      border-radius: 4px;
+    }
+  }
+}

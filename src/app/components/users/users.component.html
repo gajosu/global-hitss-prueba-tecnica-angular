@@ -26,7 +26,7 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button class="users__create-button">
+      <button mat-raised-button class="users__create-button" (click)="openUserDialog()">
         Crear nuevo usuario
       </button>
     </div>
@@ -34,7 +34,12 @@
 
   <div class="users__content">
     <div class="users__table-container">
-      <table mat-table [dataSource]="users" class="users__table">
+      <div *ngIf="users.length === 0" class="users__no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No se encontraron usuarios con los filtros seleccionados</p>
+      </div>
+
+      <table mat-table [dataSource]="users" class="users__table" *ngIf="users.length > 0">
         <!-- Usuario Column -->
         <ng-container matColumnDef="usuario">
           <th mat-header-cell *matHeaderCellDef> Usuario </th>
@@ -90,7 +95,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
-      <div class="users__footer">
+      <!-- Footer (mostrar solo si hay resultados) -->
+      <div class="users__footer" *ngIf="users.length > 0">
         <span class="users__total">Total Registros: {{users.length}}</span>
       </div>
     </div>

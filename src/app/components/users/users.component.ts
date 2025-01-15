@@ -6,13 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { DepartamentosService } from '../../services/departamentos.service';
 import { CargosService } from '../../services/cargos.service';
 import { Cargo, Departamento, User } from '../../models/user.interface';
 import { forkJoin } from 'rxjs';
+import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -49,7 +50,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private departamentosService: DepartamentosService,
-    private cargosService: CargosService
+    private cargosService: CargosService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -74,11 +76,55 @@ export class UsersComponent implements OnInit {
   }
 
   onFilterChange(): void {
-    console.log('Filtros:', { departamento: this.selectedDepartamento, cargo: this.selectedCargo });
+    this.usersService.getUsers().subscribe({
+      next: (users) => {
+        let filteredUsers = users;
+
+        if (this.selectedDepartamento) {
+          filteredUsers = filteredUsers.filter(user =>
+            user.departamento.id === this.selectedDepartamento
+          );
+        }
+
+        if (this.selectedCargo) {
+          filteredUsers = filteredUsers.filter(user =>
+            user.cargo.id === this.selectedCargo
+          );
+        }
+
+        console.log(this.selectedDepartamento, this.selectedCargo);
+
+        this.users = filteredUsers;
+      },
+      error: (error) => {
+        console.error('Error al filtrar usuarios:', error);
+      }
+    });
   }
 
-  openUserDialog(user?: User): void {
-    console.log('Abrir diálogo para:', user);
+  openUserDialog(): void {
+    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
+      width: '100%',
+      maxWidth: '70%',
+      disableClose: true,
+      data: {
+        departamentos: this.departamentos,
+        cargos: this.cargos
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.usersService.createUser(result).subscribe({
+          next: () => {
+            this.loadInitialData();
+          },
+          error: (error) => {
+            console.error('Error al crear usuario:', error);
+          }
+        });
+      }
+    });
   }
 
   deleteUser(id?: number): void {
