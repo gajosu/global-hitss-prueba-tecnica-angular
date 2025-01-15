@@ -1,0 +1,129 @@
+// Variables
+$primary-color: #3f51b5;
+$danger-color: #f44336;
+$text-color: #333;
+$border-color: #bebebe;
+$background-color: #f5f5f5;
+
+.users {
+  background-color: $background-color;
+  min-height: 100vh;
+
+  &__header {
+    padding: 24px 24px 12px;
+    margin-bottom: 24px;
+    border-bottom: 3px solid #bebebe;
+  }
+
+  &__module-info {
+    margin-bottom: 20px;
+  }
+
+  &__module-label {
+    color: #666;
+    font-size: 14px;
+  }
+
+  &__title {
+    color: $text-color;
+    font-size: 24px;
+    margin: 8px 0;
+    font-weight: 500;
+  }
+
+  &__filters {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__filter {
+    width: 250px;
+  }
+
+  &__create-button {
+    margin-left: auto;
+    background-color: $primary-color;
+    color: white;
+    padding: 0 24px;
+    height: 48px;
+  }
+
+  &__content {
+    padding: 0 24px;
+  }
+
+  &__table-container {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      color: $text-color;
+      font-weight: 500;
+      text-align: left;
+      padding: 16px;
+      border-bottom: 2px solid $border-color;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid $border-color;
+      color: $text-color;
+    }
+
+    tr:nth-child(even) {
+      background-color: $background-color;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  &__action-button {
+    padding: 0 16px;
+    margin-right: 8px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+
+    &--edit {
+      color: #4CAF50;
+    }
+
+    &--delete {
+      color: #F44336;
+    }
+  }
+
+  &__action-icon {
+    margin-right: 8px;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+  }
+
+  &__footer {
+    padding: 16px 0 0;
+    border-top: 1px solid $border-color;
+    margin-top: 16px;
+  }
+
+  &__total {
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+::ng-deep {
+  .mat-mdc-table {
+    background: transparent !important;
+  }
+}
