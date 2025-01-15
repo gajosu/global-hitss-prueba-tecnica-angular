@@ -44,6 +44,7 @@ export class UsersComponent implements OnInit {
     'apellidos',
     'departamento',
     'cargo',
+    'email',
     'acciones'
   ];
 
@@ -115,14 +116,7 @@ export class UsersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.usersService.createUser(result).subscribe({
-          next: () => {
-            this.loadInitialData();
-          },
-          error: (error) => {
-            console.error('Error al crear usuario:', error);
-          }
-        });
+          this.loadInitialData();
       }
     });
   }

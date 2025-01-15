@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User, Departamento, Cargo } from '../../../models/user.interface';
 import { MatIconModule } from '@angular/material/icon';
+import { finalize } from 'rxjs/operators';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-create-user-dialog',
@@ -30,11 +32,13 @@ export class CreateUserDialogComponent {
   userForm: FormGroup;
   departamentos: Departamento[] = [];
   cargos: Cargo[] = [];
+  isLoading = false;
 
   constructor(
     private dialogRef: MatDialogRef<CreateUserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { departamentos: Departamento[], cargos: Cargo[] },
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UsersService
   ) {
     this.departamentos = data.departamentos;
     this.cargos = data.cargos;
@@ -43,9 +47,9 @@ export class CreateUserDialogComponent {
       usuario: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       primerNombre: ['', Validators.required],
-      segundoNombre: [''],
+      segundoNombre: ['', Validators.required],
       primerApellido: ['', Validators.required],
-      segundoApellido: [''],
+      segundoApellido: ['', Validators.required],
       idDepartamento: ['', Validators.required],
       idCargo: ['', Validators.required]
     });
@@ -53,7 +57,22 @@ export class CreateUserDialogComponent {
 
   onSubmit(): void {
     if (this.userForm.valid) {
-      this.dialogRef.close(this.userForm.value);
+      this.isLoading = true;
+
+      this.userService.createUser(this.userForm.value)
+        .pipe(
+          finalize(() => this.isLoading = false)
+        )
+        .subscribe({
+          next: (response) => {
+            this.dialogRef.close(response);
+          },
+          error: (error) => {
+            console.error('Error al crear usuario:', error);
+            // Aquí podrías agregar un manejo de errores más específico
+            // Por ejemplo, mostrar un mensaje al usuario
+          }
+        });
     }
   }
 

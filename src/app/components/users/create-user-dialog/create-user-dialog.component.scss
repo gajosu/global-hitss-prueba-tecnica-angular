@@ -1,10 +1,13 @@
 .create-user-dialog {
+  background-color: #f3f4f6;
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 24px 24px 12px;
     border-bottom: 1px solid #e0e0e0;
+    background-color: #f3f4f6;
   }
 
   &__form {
@@ -60,8 +63,24 @@
 
   .mat-mdc-dialog-surface {
     border-radius: 8px !important;
-    min-width: 800px !important;
-    background-color: #f8f9fa !important;
+    width: 800px !important;
+    max-width: 90vw !important;
+    margin: auto !important;
+    position: relative !important;
+    background-color: #f3f4f6 !important;
+    overflow: hidden !important;
+  }
+
+  .cdk-overlay-pane {
+    max-width: 90vw !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .cdk-overlay-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
   .mat-mdc-dialog-title {
@@ -75,12 +94,14 @@
     margin: 0 !important;
     padding: 0 !important;
     max-height: none !important;
+    background-color: #f3f4f6 !important;
   }
 
   .mat-mdc-dialog-actions {
     padding: 16px 24px !important;
     margin: 0 !important;
     border-top: 1px solid #e0e0e0;
+    background-color: #f3f4f6 !important;
   }
 
   .mat-mdc-form-field {
