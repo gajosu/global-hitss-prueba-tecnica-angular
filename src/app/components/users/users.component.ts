@@ -14,6 +14,7 @@ import { CargosService } from '../../services/cargos.service';
 import { Cargo, Departamento, User } from '../../models/user.interface';
 import { forkJoin } from 'rxjs';
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
+import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -121,11 +122,20 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  deleteUser(id?: number): void {
-    if (id) {
-      this.usersService.deleteUser(id).subscribe(() => {
-        this.loadInitialData();
-      });
-    }
+  deleteUser(user: User): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && user.id) {
+        this.usersService.deleteUser(user.id).subscribe({
+          next: () => {
+            this.users = this.users.filter(u => u.id !== user.id);
+          },
+          error: (error) => {
+            console.error('Error al eliminar usuario:', error);
+          }
+        });
+      }
+    });
   }
 }

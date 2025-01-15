@@ -84,7 +84,9 @@
               <mat-icon class="users__action-icon">edit</mat-icon>
               Editar
             </button>
-            <button mat-button class="users__action-button users__action-button--delete">
+            <button mat-button
+                    class="users__action-button users__action-button--delete"
+                    (click)="deleteUser(user)">
               <mat-icon class="users__action-icon">delete</mat-icon>
               Eliminar
             </button>
