@@ -9,61 +9,77 @@
   <mat-dialog-content>
     <form [formGroup]="userForm" class="create-user-dialog__form">
       <div class="create-user-dialog__row">
-        <mat-form-field appearance="outline">
-          <mat-label>Departamento</mat-label>
-          <mat-select formControlName="idDepartamento">
-            <mat-option [value]="">Seleccione un Departamento</mat-option>
-            <mat-option *ngFor="let dept of departamentos" [value]="dept.id">
-              {{dept.nombre}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Departamento:</label>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="idDepartamento" placeholder="Seleccione un Departamento">
+              <mat-option [value]="null">Seleccione un Departamento</mat-option>
+              <mat-option *ngFor="let dept of departamentos" [value]="dept.id">
+                {{dept.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Cargo</mat-label>
-          <mat-select formControlName="idCargo">
-            <mat-option [value]="">Seleccione un perfil</mat-option>
-            <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
-              {{cargo.nombre}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Cargo:</label>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="idCargo" placeholder="Seleccione un Cargo">
+              <mat-option [value]="null">Seleccione un Cargo</mat-option>
+              <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
+                {{cargo.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
 
       <div class="create-user-dialog__row">
-        <mat-form-field appearance="outline">
-          <mat-label>Usuario</mat-label>
-          <input matInput formControlName="usuario">
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Usuario:</label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="usuario">
+          </mat-form-field>
+        </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" type="email">
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Email:</label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="email" type="email">
+          </mat-form-field>
+        </div>
       </div>
 
       <div class="create-user-dialog__row">
-        <mat-form-field appearance="outline">
-          <mat-label>Primer Nombre</mat-label>
-          <input matInput formControlName="primerNombre">
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Primer Nombre:</label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="primerNombre">
+          </mat-form-field>
+        </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Segundo Nombre</mat-label>
-          <input matInput formControlName="segundoNombre">
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Segundo Nombre:</label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="segundoNombre">
+          </mat-form-field>
+        </div>
       </div>
 
       <div class="create-user-dialog__row">
-        <mat-form-field appearance="outline">
-          <mat-label>Primer Apellido</mat-label>
-          <input matInput formControlName="primerApellido">
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Primer Apellido:</label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="primerApellido">
+          </mat-form-field>
+        </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Segundo Apellido</mat-label>
-          <input matInput formControlName="segundoApellido">
-        </mat-form-field>
+        <div class="create-user-dialog__field">
+          <label class="create-user-dialog__label">Segundo Apellido:</label>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="segundoApellido">
+          </mat-form-field>
+        </div>
       </div>
     </form>
   </mat-dialog-content>
